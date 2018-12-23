@@ -45,7 +45,21 @@ const GroupSchema = Schema({
   members: [{ type: Schema.Types.ObjectId, ref: 'user' }]
 })
 
+const EventSchema = Schema({
+  _id: Schema.Types.ObjectId,
+  summary: String,
+  description: String,
+  start: {
+    date: { type: String }
+  },
+  end: {
+    date: { type: String }
+  },
+  responsible: { type: Schema.Types.ObjectId, ref: 'user' }
+})
+
 const UserModel = mongoose.model('user', UserSchema)
 const GroupModel = mongoose.model('group', GroupSchema)
+const EventModel = mongoose.model('event', EventSchema)
 
-module.exports = {UserModel, GroupModel}
+module.exports = {UserModel, GroupModel, EventModel}

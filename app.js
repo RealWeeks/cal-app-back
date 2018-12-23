@@ -6,7 +6,7 @@ const passport = require('passport')
 const app = express()
 // const UserModel = require('./models/model');
 
-mongoose.connect('mongodb://127.0.0.1:27017/passport-jwt')
+mongoose.connect('mongodb://127.0.0.1:27017/cal-app')
 mongoose.connection.on('error', error => console.log(error))
 mongoose.Promise = global.Promise
 
