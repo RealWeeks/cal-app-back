@@ -42,7 +42,8 @@ const GroupSchema = Schema({
   _id: Schema.Types.ObjectId,
   founder: { type: Schema.Types.ObjectId, ref: 'user' },
   name: String,
-  members: [{ type: Schema.Types.ObjectId, ref: 'user' }]
+  members: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+  tasks: [String]
 })
 
 const EventSchema = Schema({

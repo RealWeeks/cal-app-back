@@ -17,10 +17,13 @@ router.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err || !user) {
+        console.log(user)
+        console.log('err')
         const error = new Error('An Error occured')
         return next(error)
       }
       req.login(user, { session: false }, async (error) => {
+        console.log('error2')
         if (error) return next(error)
         // We don't want to store the sensitive information such as the
         // user password in the token so we pick only the email and id

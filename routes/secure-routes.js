@@ -22,6 +22,7 @@ router.post('/creategroup', async (req, res) => {
   const group = new GroupModel({
     name: req.body.groupname,
     founder: req.user._id,
+    tasks: req.body.tasks,
     _id: new mongoose.Types.ObjectId()})
   group.members.push(req.user._id)
   try {
@@ -38,7 +39,7 @@ router.post('/creategroup', async (req, res) => {
 router.get('/groups', async (req, res) => {
   try {
     let user = await UserModel.findOne({email: req.user.email})
-      .populate({path: 'groups', select: 'name members', populate: { path: 'members', select: 'email' }})
+      .populate({path: 'groups', select: 'name members tasks', populate: { path: 'members', select: 'email' }})
 
     res.json({status: 'success', groups: user.groups})
   } catch (error) {

@@ -23,8 +23,10 @@ passport.use('login', new localStrategy({ // eslint-disable-line new-cap
   passwordField: 'password'
 }, async (email, password, done) => {
   try {
+    console.log(email)
     // Find the user associated with the email provided by the user
     const user = await Model.UserModel.findOne({ email })
+    console.log('user', user)
     if (!user) {
       // If the user isn't found in the database, return a message
       return done(null, false, {message: 'User not found'})
@@ -33,6 +35,7 @@ passport.use('login', new localStrategy({ // eslint-disable-line new-cap
     // If the passwords match, it returns a value of true.
     const validate = await user.isValidPassword(password)
     if (!validate) {
+      console.log('not valid')
       return done(null, false, {message: 'Wrong Password'})
     }
     // Send the user information to the next middleware
